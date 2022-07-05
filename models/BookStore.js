@@ -43,6 +43,6 @@ const bookstoreSchema = mongoose.Schema({
   defaultImage: String, // 대표 이미지
 });
 
-const Bookstore = mongoose.model("BookStore", bookstoreSchema);
+const BookStore = mongoose.model("BookStore", bookstoreSchema);
 
-module.exports = { Bookstore };
+module.exports = { BookStore };
