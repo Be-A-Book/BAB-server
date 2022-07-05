@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Bookstore } = require("../models/BookStore");
+const { Bookstore } = require("../models/Bookstore");
 
 router.post("/getBookstoreDetail", (req, res) => {
     Bookstore.findOne({ "_id" : req.body._id })

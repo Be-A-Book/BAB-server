@@ -46,4 +46,4 @@ const bookstoreSchema = mongoose.Schema({
 
 const Bookstore = mongoose.model("Bookstore", bookstoreSchema);
 
-module.exports = { BookStore };
+module.exports = { Bookstore };
