@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const bookstoreSchema = mongoose.Schema({
   name: {
@@ -31,10 +32,10 @@ const bookstoreSchema = mongoose.Schema({
     // 휴무일
     type: Number,
   },
-  tags: {
+  tags: [
     // 분위기 태그
-    type: Array,
-  },
+    { type: Schema.Types.ObjectId, ref: "Tag"}
+  ],
   introduction: {
     // 소개
     type: String,
@@ -43,6 +44,6 @@ const bookstoreSchema = mongoose.Schema({
   defaultImage: String, // 대표 이미지
 });
 
-const Bookstore = mongoose.model("BookStore", bookstoreSchema);
+const Bookstore = mongoose.model("Bookstore", bookstoreSchema);
 
 module.exports = { Bookstore };
