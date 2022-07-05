@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
+const Schema = mongoose.Schema;
 
 const userSchema = mongoose.Schema({
     name: {
@@ -19,8 +20,8 @@ const userSchema = mongoose.Schema({
     },
     image: String,
     bookmark: {
-        type: String,
-        default: "none"
+        type: Schema.Types.ObjectId,
+        ref: 'Bookmark',
     },
     token: {
         type: String

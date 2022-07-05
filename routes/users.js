@@ -1,10 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
+const { Bookmark } = require("../models/Bookmark");
 
 const { auth } = require("../middleware/auth");
 
 
+router.post("/getBookmark", (req, res) => {
+
+    User.findOne({ "email" : req.body.email })
+    .populate('bookmark')
+    .exec((err, user) => {
+        if(err) return res.status(400).send(err);
+        let bookmark = user.bookmark
+        return res.status(200).json({ success: true, bookmark })
+    })
+});
+
+
+/* 아래는 auth 관련 라우트 */
 
 router.get("/auth", auth, (req, res) => {
     // 미들웨어를 통과해 여기까지 왔다는 얘기는 Authentication이 true라는 말.
@@ -15,6 +29,7 @@ router.get("/auth", auth, (req, res) => {
       email: req.user.email,
       name: req.user.name,
       image: req.user.image,
+      bookmark: req.user.bookmark
     });
 });
 
