@@ -1,9 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { Bookstore } = require("../models/Bookstore");
+const { Bookstore } = require("../models/BookStore");
 
 router.post("/getBookstoreDetail", (req, res) => {
-
     Bookstore.findOne({ "_id" : req.body._id })
     .populate({path: "tags", model: "Tag"})
     .exec((err, bookstore) => {
