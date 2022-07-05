@@ -13,4 +13,4 @@ const favoriteScema = mongoose.Schema({
 });
 
 const StoreFavorite = mongoose.model("StoreFavorite", favoriteScema);
-module.exports = { StroeFavorite };
+module.exports = { StoreFavorite };
