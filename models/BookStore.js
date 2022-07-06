@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const bookstoreSchema = mongoose.Schema({
   name: {
@@ -43,6 +44,6 @@ const bookstoreSchema = mongoose.Schema({
   defaultImage: String, // 대표 이미지
 });
 
-const BookStore = mongoose.model("BookStore", bookstoreSchema);
+const Bookstore = mongoose.model("Bookstore", bookstoreSchema);
 
-module.exports = { BookStore };
+module.exports = { Bookstore };
