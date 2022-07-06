@@ -32,10 +32,10 @@ const bookstoreSchema = mongoose.Schema({
     // 휴무일
     type: Number,
   },
-  tags: {
+  tags: [
     // 분위기 태그
-    type: Array,
-  },
+    { type: Schema.Types.ObjectId, ref: "Tag"}
+  ],
   introduction: {
     // 소개
     type: String,
