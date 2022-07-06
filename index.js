@@ -27,9 +27,9 @@ app.get("/", (req, res) => {
   res.send("Hello World!~~ from.root"); // 출력
 });
 
-app.use('/api/users', require('./routes/users'));
-app.use('/api/bookstore', require('./routes/bookstore'));
-app.use('/api/tag', require('./routes/tag'));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/bookstore", require("./routes/bookstore"));
+//app.use('/api/tag', require('./routes/tag'));
 
 app.listen(port, () => {
   // 포트(port)에서 실행
