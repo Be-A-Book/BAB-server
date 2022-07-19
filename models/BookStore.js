@@ -40,7 +40,7 @@ const bookstoreSchema = mongoose.Schema({
     // 소개
     type: String,
   },
-  webSite: String, // 웹사이트
+  website: String, // 웹사이트
   defaultImage: String, // 대표 이미지
 });
 

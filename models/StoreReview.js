@@ -5,7 +5,7 @@ const reviewSchema = mongoose.Schema(
   {
     store: {
       type: Schema.Types.ObjectId,
-      ref: "BookStore",
+      ref: "Bookstore",
     },
     writer: {
       type: Schema.Types.ObjectId,

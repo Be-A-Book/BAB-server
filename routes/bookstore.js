@@ -1,6 +1,8 @@
 const express = require("express");
+const { default: mongoose } = require("mongoose");
 const router = express.Router();
-const { Bookstore } = require("../models/BookStore");
+const { Bookstore } = require("../models/Bookstore");
+const { Tag } = require("../models/Tag");
 
 router.post("/getBookstoreDetail", (req, res) => {
   Bookstore.findOne({ _id: req.body._id })

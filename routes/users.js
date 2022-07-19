@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User } = require("../models/User");
+const { Bookmark } = require("../models/Bookmark");
 
 const { auth } = require("../middleware/auth");
 
