@@ -24,8 +24,8 @@ router.get("/getReviews", (req, res) => {
   });
 });
 
-router.post("/getReviews", (req, res) => {
-  StoreReview.find({ store: req.body.store })
+router.get("/getReviews/:id", (req, res) => {
+  StoreReview.find({ store: req.params.id })
     .populate("writer")
     .exec((err, reviews) => {
       if (err) return res.status(400).send(err);

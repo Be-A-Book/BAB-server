@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { ReviewLike } = require("../models/ReviewLike");
 
-router.post("/getLikes", (req, res) => {
-  ReviewLike.find({ review: req.body.review }).exec((err, likes) => {
+router.get("/getLikes/:id", (req, res) => {
+  ReviewLike.find({ review: req.params.id }).exec((err, likes) => {
     if (err) return res.status(400).send(err);
     return res.status(200).json({ success: true, likes });
   });
