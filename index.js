@@ -30,6 +30,7 @@ app.use("/api/bookstore", require("./routes/bookstore"));
 //app.use('/api/tag', require('./routes/tag'));
 app.use("/api/review", require("./routes/review"));
 app.use("/api/like", require("./routes/like"));
+app.use("/api/favorite", require("./routes/favorite"));
 
 app.listen(port, () => {
   // 포트(port)에서 실행
