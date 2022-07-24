@@ -41,7 +41,11 @@ router.get("/getReviews/:id", (req, res) => {
 
 /* 이미지를 포함한 후기 업로드 */
 
+<<<<<<< HEAD
 const DIR = './public/review/';
+=======
+const DIR = './public/';
+>>>>>>> 7c2738fc86b1e3d5f10ff003a603392373adc654
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, DIR)
