@@ -30,6 +30,7 @@ app.use("/api/bookstore", require("./routes/bookstore"));
 //app.use('/api/tag', require('./routes/tag'));
 app.use("/api/review", require("./routes/review"));
 app.use("/api/like", require("./routes/like"));
+app.use("/api/favorite", require("./routes/favorite"));
 app.use("/api/admin", require("./routes/admin"));  // 관리자용 라우터
 
 /* 이미지 */
@@ -38,7 +39,7 @@ app.use('/public', express.static('public'));
 // 정적 파일이 존재하는 path 로 접근하기 위한 코드가 번거롭고 복잡하게 된다.
 // static 의 인자로 디렉토리명을 전달하며, 해당 디렉토리 경로의 데이터들은 
 // 웹브라우저의 요청에 따라 서비스를 제공할 수 있다.
-// 해당 디렉토리에 접근할때에도 해당 경로를 static 경로로 지정해야 한다.
+// 해당 디렉토리에 접근할 때에도 해당 경로를 static 경로로 지정해야 한다.
 
 app.listen(port, () => {
   // 포트(port)에서 실행
