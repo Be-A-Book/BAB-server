@@ -30,7 +30,7 @@ const bookstoreSchema = mongoose.Schema({
   },
   holiday: {
     // 휴무일
-    type: Number,
+    type: String,
   },
   tags: [
     // 분위기 태그
