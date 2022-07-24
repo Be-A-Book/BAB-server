@@ -41,7 +41,7 @@ router.get("/getReviews/:id", (req, res) => {
 
 /* 이미지를 포함한 후기 업로드 */
 
-const DIR = './public/';
+const DIR = './public/review/';
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, DIR)
@@ -104,7 +104,7 @@ router.post('/postReview', upload.single('image'), (req, res, next) => {
         store: req.body.store,
         writer: req.body.writer,
         content: req.body.content,
-        image: url + '/public/' + req.file.filename 
+        image: url + '/public/review/' + req.file.filename 
     });
     
     review.save().then(result => {
