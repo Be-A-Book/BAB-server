@@ -41,7 +41,11 @@ const bookstoreSchema = mongoose.Schema({
     type: String,
   },
   website: String, // 웹사이트
-  defaultImage: String, // 대표 이미지
+  defaultImage: {  
+    // 대표 이미지
+    type: String, 
+    default: "https://beabook-server.herokuapp.com/public/bookstore/bookstore-default-image"
+  }
 });
 
 const Bookstore = mongoose.model("Bookstore", bookstoreSchema);
