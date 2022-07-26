@@ -29,4 +29,12 @@ router.post("/getGu", (req, res) => {
     });
 });
 
+router.get("/getMapMarker", (req, res) => {
+  Bookstore.find({},{"_id":1, "name":1, "tags":1, "lat":1, "lng":1, "defaultImage":1})
+    .exec((err, bookstore) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, bookstore });
+    });
+});
+
 module.exports = router;
