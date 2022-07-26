@@ -2,8 +2,32 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../models/User");
 const { Bookmark } = require("../models/Bookmark");
+const { StoreReview } = require("../models/StoreReview");
+const { StoreFavorite } = require("../models/StoreFavorite");
 
 const { auth } = require("../middleware/auth");
+
+router.get("/getUserInfo/:id", (req, res) => {
+  User.findOne({ _id: req.params.id })
+    .populate("bookmark")
+    .exec((err, user) => {
+      if (err) return res.json({ success: false, err });
+      StoreReview.find({ writer: req.params.id }).exec((err, reviews) => {
+        if (err) return res.json({ success: false, err });
+        StoreFavorite.find({ user: req.params.id })
+          .populate("store")
+          .exec((err, favorites) => {
+            if (err) return res.json({ success: false, err });
+            const userInfo = {
+              user: user,
+              reviews: reviews,
+              favorites: favorites,
+            };
+            res.status(200).json({ success: true, userInfo });
+          });
+      });
+    });
+});
 
 router.post("/getBookmark", (req, res) => {
   User.findOne({ email: req.body.email })
