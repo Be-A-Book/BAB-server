@@ -11,7 +11,12 @@ const bookstoreSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  district: {
+  gu: {
+    // 주소-행정구
+    type: String,
+    maxlength: 50,
+  },
+  dong: {
     // 주소-행정동
     type: String,
     maxlength: 50,
@@ -44,7 +49,7 @@ const bookstoreSchema = mongoose.Schema({
   defaultImage: {  
     // 대표 이미지
     type: String, 
-    default: "https://beabook-server.herokuapp.com/public/bookstore/bookstore-default-image"
+    //default: "https://beabook-server.herokuapp.com/public/bookstore/bookstore-default-image"
   }
 });
 

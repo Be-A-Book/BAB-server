@@ -13,4 +13,20 @@ router.post("/getBookstoreDetail", (req, res) => {
     });
 });
 
+router.post("/getDong", (req, res) => {
+  Bookstore.find({ dong: req.body.dong })
+    .exec((err, bookstore) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, bookstore });
+    });
+});
+
+router.post("/getGu", (req, res) => {
+  Bookstore.find({ gu: req.body.gu })
+    .exec((err, bookstore) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, bookstore });
+    });
+});
+
 module.exports = router;
