@@ -37,4 +37,16 @@ router.get("/getMapMarker", (req, res) => {
     });
 });
 
+router.get("/search", (req, res) => {
+  let keyword = req.query.keyword;
+  Bookstore.find( {$or:[{ name: {$regex : keyword} }, 
+                        { address: {$regex : keyword} }
+                        ]})
+    .populate({ path: "tags", model: "Tag" })
+    .exec((err, bookstore) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, bookstore });
+    });
+});
+
 module.exports = router;
