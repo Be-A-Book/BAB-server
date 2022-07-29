@@ -39,6 +39,15 @@ router.post("/getBookmark", (req, res) => {
     });
 });
 
+router.post("/selectBookmark", (req, res) => {
+  User.findOneAndUpdate({ email: req.body.email },
+    { bookmark: req.body.bookmark })
+    .exec((err, user) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true });
+    });
+});
+
 /* 아래는 auth 관련 라우트 */
 
 router.get("/auth", auth, (req, res) => {
