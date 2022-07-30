@@ -39,7 +39,7 @@ const bookstoreSchema = mongoose.Schema({
   },
   tags: [
     // 분위기 태그
-    { type: Schema.Types.ObjectId, ref: "Tag" },
+    {type: String}
   ],
   introduction: {
     // 소개
