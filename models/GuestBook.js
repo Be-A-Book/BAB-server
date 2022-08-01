@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const guestSchema = mongoose.Schema({
   writer: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  content: {
+  message: {
     type: String,
     required: true,
   },

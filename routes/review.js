@@ -36,11 +36,13 @@ router.get("/getReviews", async (req, res, next) => {
 
     const total = await StoreReview.countDocuments({});
     return res.status(200).json({
+      success: true,
       reviews,
       totalPages: Math.ceil(total / perPage),
       currentPage: page,
     });
   } catch (err) {
+    res.json({ success: false, err });
     next(err);
   }
 });
@@ -59,11 +61,13 @@ router.get("/getReviews/:id", async (req, res, next) => {
 
     const total = await StoreReview.countDocuments({ store: req.params.id });
     return res.status(200).json({
+      success: true,
       reviews,
       totalPages: Math.ceil(total / perPage),
       currentPage: page,
     });
   } catch (err) {
+    res.json({ success: false, err });
     next(err);
   }
 });
