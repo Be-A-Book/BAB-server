@@ -30,6 +30,7 @@ router.get("/getReviews", async (req, res, next) => {
 
     const reviews = await StoreReview.find()
       .populate("writer")
+      .populate("store")
       .limit(perPage * 1)
       .skip((page - 1) * perPage)
       .sort(sort);
@@ -55,6 +56,7 @@ router.get("/getReviews/:id", async (req, res, next) => {
 
     const reviews = await StoreReview.find({ store: req.params.id })
       .populate("writer")
+      .populate("store")
       .limit(perPage * 1)
       .skip((page - 1) * perPage)
       .sort(sort);
