@@ -25,7 +25,7 @@ router.post("/postReview", (req, res) => {
 router.get("/getReviews", async (req, res, next) => {
   try {
     const page = req.query.page || 1;
-    const sort = { createdAt: -1 }; //기본 최신순1, 인기순2
+    const sort = req.query.sort == 2 ? { likes: -1 } : { createdAt: -1 }; //기본 최신순1, 인기순2
     const perPage = 4;
 
     const reviews = await StoreReview.find()
@@ -50,7 +50,7 @@ router.get("/getReviews", async (req, res, next) => {
 router.get("/getReviews/:id", async (req, res, next) => {
   try {
     const page = req.query.page || 1;
-    const sort = { createdAt: -1 }; //기본 최신순1, 인기순2
+    const sort = req.query.sort == 2 ? { likes: -1 } : { createdAt: -1 }; //기본 최신순1, 인기순2
     const perPage = 6;
 
     const reviews = await StoreReview.find({ store: req.params.id })
