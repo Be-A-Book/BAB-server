@@ -4,6 +4,7 @@ const path = require("path");
 const multer = require("multer");
 const mongoose = require("mongoose");
 const { StoreReview } = require("../models/StoreReview");
+const { Bookstore } = require("../models/Bookstore");
 
 /*
 router.post("/postReview", (req, res) => {
@@ -112,24 +113,36 @@ var upload = multer({
 });
 
 router.post("/postReview", upload.single("image"), (req, res, next) => {
-  /* 이미지가 없는 경우 */
+
+  
+  
 
   if (req.file == null) {
-    const review1 = new StoreReview(req.body);
+    /* 이미지가 없는 경우 */
+    
+    Bookstore.findOne({ _id: req.body.store })
+    .exec((err, bookstore) => {
+      if (err) return res.status(400).send(err);
+  
+      req.body.image = bookstore.defaultImage; // 서점의 defaultImage를 후기이미지로 사용하기 위해 가져옴
+      const review1 = new StoreReview(req.body);
 
-    review1.save((err, review) => {
-      if (err) return res.json({ success: false });
+      // DB에 저장
+      review1.save((err, review) => {
+        if (err) return res.json({ success: false });
 
-      StoreReview.find({ _id: review._id })
-        .populate({
-          path: "writer",
-          populate: { path: "bookmark", model: "Bookmark" },
-        })
-        .exec((err, result) => {
-          if (err) return res.json({ success: false, err });
-          return res.status(200).json({ success: true, result });
-        });
-    });
+        StoreReview.find({ _id: review._id })
+          .populate({
+            path: "writer",
+            populate: { path: "bookmark", model: "Bookmark" },
+          })
+          .exec((err, result) => {
+            if (err) return res.json({ success: false, err });
+            return res.status(200).json({ success: true, result });
+          });
+      });
+    });         
+
   } else {
     /* 이미지가 있는 경우 */
 
@@ -150,7 +163,7 @@ router.post("/postReview", upload.single("image"), (req, res, next) => {
       .save()
       .then((result) => {
         res.status(201).json({
-          message: "Review registerd successfuly!",
+          success: true,
           reviewUploaded: {
             _id: result._id,
             image: result.image,
