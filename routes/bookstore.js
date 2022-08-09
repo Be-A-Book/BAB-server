@@ -38,7 +38,9 @@ router.get("/getMapMarker", (req, res) => {
 router.get("/search", (req, res) => {
   let keyword = req.query.keyword;
   Bookstore.find( {$or:[{ name: {$regex : keyword} }, 
-                        { address: {$regex : keyword} }
+                        { address: {$regex : keyword} },
+                        { introduction: {$regex : keyword}},
+                        { tags: {$regex : keyword}}
                         ]})
     .exec((err, bookstore) => {
       if (err) return res.status(400).send(err);
@@ -58,7 +60,7 @@ router.get("/getDistrict", async (req, res) => {
         arrayRes.push(bookstore);
         console.log(arrayRes);  // 여기서 보면 배열이 push되긴 함
         
-        
+
         /* 하려다 만 것
         const arr = (Bookstore.find({ dong: arrayDong[i] }));  // cursor를 받아옴
         let arrayTemp = [];  // cursor -> list 변환용 임시 배열
