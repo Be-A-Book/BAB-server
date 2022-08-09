@@ -166,4 +166,47 @@ router.post("/postReview", upload.single("image"), (req, res, next) => {
   }
 });
 
+router.put(
+  "/postReview/:id",
+  upload.single("image"),
+  async (req, res, next) => {
+    try {
+      //const review = await StoreReview.findOne({ _id: req.params.id });
+      if (req.file == null) {
+        //이미지 없는 경우
+        await StoreReview.updateOne(
+          { _id: req.params.id },
+          {
+            $set: {
+              content: req.body.content,
+              image: null,
+            },
+          }
+        );
+      } else {
+        //이미지 있는 경우
+        const url = req.protocol + "://" + req.get("host");
+
+        await StoreReview.updateOne(
+          { _id: req.params.id },
+          {
+            $set: {
+              content: req.body.content,
+              image: url + "/public/review/" + req.file.filename,
+            },
+          }
+        );
+      }
+      const review = await StoreReview.findOne({ _id: req.params.id });
+      return res.status(200).json({
+        success: true,
+        review: review,
+      });
+    } catch (err) {
+      res.json({ success: false, err });
+      next(err);
+    }
+  }
+);
+
 module.exports = router;
