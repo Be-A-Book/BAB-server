@@ -89,8 +89,8 @@ const storage = multer.diskStorage({
     // (uuidv4 X) 통지서
 
     let extension = path.extname(file.originalname);
-    let basename = path.basename(file.originalname, extension);
-    cb(null, basename + "-" + Date.now() + extension);
+    let basename = path.basename(file.originalname, extension);  // 원본파일이름 사용하지 않음
+    cb(null, Date.now() + extension);
   },
 });
 
