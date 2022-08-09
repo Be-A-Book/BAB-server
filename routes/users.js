@@ -34,8 +34,8 @@ router.post("/getBookmark", (req, res) => {
     .populate("bookmark")
     .exec((err, user) => {
       if (err) return res.status(400).send(err);
-      let bookmark = user.bookmark;
-      return res.status(200).json({ success: true, bookmark });
+      const bookmark = user.bookmark;
+      res.status(200).json({ success: true, bookmark });
     });
 });
 

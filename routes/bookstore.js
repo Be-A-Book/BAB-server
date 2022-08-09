@@ -46,4 +46,29 @@ router.get("/search", (req, res) => {
     });
 });
 
+
+// 서가 페이지 api
+router.get("/getDistrict", async (req, res) => {
+  let arrayDong = ["연남동", "서교동", "망원동"];  // 가져올 동 하드코딩
+  let arrayGu = ["성동구", "중랑구", "강서구"];  // 묶어서 가져올 구 하드코딩
+  let arrayRes = [];
+  for (let i=0; i<arrayDong.length; i++) {
+    Bookstore.find({ dong: arrayDong[i] })
+    .exec((err, bookstore) => {
+        arrayRes.push(bookstore);
+        console.log(arrayRes);  // 여기서 보면 배열이 push되긴 함
+        
+        
+        /* 하려다 만 것
+        const arr = (Bookstore.find({ dong: arrayDong[i] }));  // cursor를 받아옴
+        let arrayTemp = [];  // cursor -> list 변환용 임시 배열
+        await arr.forEach(doc => arrayTemp.push(doc));  // cursor의 참조를 순회하며 임시 배열에 집어넣음
+        await arrayRes.push(arr);  // 임시 배열을 arrayRes에 배열 형태 그대로 푸시
+        */
+    }) 
+  }
+  console.log(arrayRes);  // 여기서 보면 빈 배열 찍힘 비동기 처리 문제인 듯
+  res.status(200).json({ success: true, bookstore: arrayRes })
+});
+
 module.exports = router;
