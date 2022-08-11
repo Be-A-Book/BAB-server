@@ -167,7 +167,7 @@ router.post(
   }
 );
 
-router.post(
+router.put(
   "/postReview/:id",
   memoUpload.single("image"),
   async (req, res, next) => {
