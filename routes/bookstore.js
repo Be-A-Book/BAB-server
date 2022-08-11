@@ -44,7 +44,14 @@ router.get("/search", (req, res) => {
                         ]})
     .exec((err, bookstore) => {
       if (err) return res.status(400).send(err);
-      return res.status(200).json({ success: true, bookstore });
+      
+      var searchResult = [];
+      for (var i=0; i<5; i++) {
+        if(bookstore[i]!=null) {
+          searchResult.push(bookstore[i])
+        }
+      }
+      return res.status(200).json({ success: true, bookstore: searchResult });
     });
 });
 
