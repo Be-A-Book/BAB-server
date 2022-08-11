@@ -2,19 +2,20 @@
 
 const { initializeApp } = require("firebase/app");
 const { getStorage } = require("firebase/storage");
+const config = require("./config/key");
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDkAdjocMOD7MeF1RuQlD6Z7qmf_LqqbLU",
-  authDomain: "beabook-d6b9f.firebaseapp.com",
-  projectId: "beabook-d6b9f",
-  storageBucket: "beabook-d6b9f.appspot.com",
-  messagingSenderId: "440945712394",
-  appId: "1:440945712394:web:2e207802eac6f413d06ef3",
-  measurementId: "G-8GR0WTYLTG",
+  apiKey: config.apiKey,
+  authDomain: config.authDomain,
+  projectId: config.projectId,
+  storageBucket: config.storageBucket,
+  messagingSenderId: config.messagingSenderId,
+  appId: config.appId,
+  measurementId: config.measurementId,
 };
 
 // Initialize Firebase
