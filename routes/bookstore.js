@@ -51,7 +51,7 @@ router.get("/search", (req, res) => {
           searchResult.push(bookstore[i])
         }
       }
-      return res.status(200).json({ success: true, searchResult: searchResult });
+      return res.status(200).json({ success: true, bookstore: searchResult });
     });
 });
 
