@@ -29,7 +29,7 @@ router.get("/getUserInfo/:id", (req, res) => {
     });
 });
 
-router.post("/getBookmark", async (req, res, err) => {
+router.post("/getBookmark", async (req, res, next) => {
   // User.findOne({ email: req.body.email })
   //   .populate("bookmark")
   //   .exec((err, user) => {
