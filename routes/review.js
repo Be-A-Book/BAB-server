@@ -184,7 +184,6 @@ router.put(
         );
       }
       const review = await StoreReview.findOne({ _id: req.params.id });
-      console.log(review);
       return res.status(200).json({
         success: true,
         review: review,
