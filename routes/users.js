@@ -30,13 +30,6 @@ router.get("/getUserInfo/:id", (req, res) => {
 });
 
 router.post("/getBookmark", async (req, res, next) => {
-  // User.findOne({ email: req.body.email })
-  //   .populate("bookmark")
-  //   .exec((err, user) => {
-  //     if (err) return res.status(400).send(err);
-  //     const bookmark = user.bookmark;
-  //     res.status(200).json({ success: true, bookmark });
-  //   });
   try {
     const user = await User.findOne({ email: req.body.email }).populate(
       "bookmark"
