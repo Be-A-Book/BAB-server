@@ -152,7 +152,7 @@ router.post(
                   success: true,
                   reviewUploaded: {
                     _id: result._id,
-                    review: result.review,
+                    review: result,
                   },
                 });
               });
