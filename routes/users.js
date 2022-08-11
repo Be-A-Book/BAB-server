@@ -29,23 +29,33 @@ router.get("/getUserInfo/:id", (req, res) => {
     });
 });
 
-router.post("/getBookmark", (req, res) => {
-  User.findOne({ email: req.body.email })
-    .populate("bookmark")
-    .exec((err, user) => {
-      if (err) return res.status(400).send(err);
-      const bookmark = user.bookmark;
-      res.status(200).json({ success: true, bookmark });
-    });
+router.post("/getBookmark", async (req, res, err) => {
+  // User.findOne({ email: req.body.email })
+  //   .populate("bookmark")
+  //   .exec((err, user) => {
+  //     if (err) return res.status(400).send(err);
+  //     const bookmark = user.bookmark;
+  //     res.status(200).json({ success: true, bookmark });
+  //   });
+  try {
+    const user = await User.findOne({ email: req.body.email }).populate(
+      "bookmark"
+    );
+    res.status(200).json({ success: true, bookmark: user.bookmark });
+  } catch (err) {
+    res.status(400).send(err);
+    next(err);
+  }
 });
 
 router.post("/selectBookmark", (req, res) => {
-  User.findOneAndUpdate({ email: req.body.email },
-    { bookmark: req.body.bookmark })
-    .exec((err, user) => {
-      if (err) return res.status(400).send(err);
-      return res.status(200).json({ success: true });
-    });
+  User.findOneAndUpdate(
+    { email: req.body.email },
+    { bookmark: req.body.bookmark }
+  ).exec((err, user) => {
+    if (err) return res.status(400).send(err);
+    return res.status(200).json({ success: true });
+  });
 });
 
 /* 아래는 auth 관련 라우트 */
