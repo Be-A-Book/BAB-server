@@ -4,6 +4,10 @@ const port = process.env.PORT || 5000; // 백 서버 포트 설정
 const config = require("./config/key");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser"); // 로그인 토큰을 쿠키에 저장하기
+const cors = require('cors');  // netlify 서버와의 통신용
+
+// netlify 서버와의 통신용
+app.use(cors());
 
 // application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true })); // 바디파서가 클라이언트에서 오는 정보를 분석해서 가져올 수 있도록
