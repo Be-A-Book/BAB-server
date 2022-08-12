@@ -38,6 +38,13 @@ app.use("/api/favorite", require("./routes/favorite"));
 app.use("/api/admin", require("./routes/admin")); // 관리자용 라우터
 app.use("/api/guestbook", require("./routes/guestbook"));
 
+// cors header
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 /* 이미지 */
 app.use("/public", express.static("public"));
 // 정적(static) 파일을 손쉽게 제공하기 위해 사용한다. express.static 을 사용하지 않으면,
