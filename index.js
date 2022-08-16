@@ -7,12 +7,9 @@ const cookieParser = require("cookie-parser"); // 로그인 토큰을 쿠키에 
 const cors = require("cors"); // netlify 서버와의 통신용
 
 // netlify 서버와의 통신용
-app.use(
-  cors({
-    origin: ["https://be-a-book.herokuapp.com/", "http://localhost:3000/"],
-    credentials: true,
-  })
-);
+app.use(cors());
+//cors({origin: ["https://be-a-book.herokuapp.com/", "http://localhost:3000/"],
+//credentials: true,})
 
 // application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true })); // 바디파서가 클라이언트에서 오는 정보를 분석해서 가져올 수 있도록
