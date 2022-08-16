@@ -43,8 +43,8 @@ app.use("/api/guestbook", require("./routes/guestbook"));
 // cors header
 app.all("/*", function (req, res, next) {
   //res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Origin", "https://be-a-book.herokuapp.com/");
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000/");
+  res.header("Access-Control-Allow-Origin", "https://be-a-book.herokuapp.com");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
